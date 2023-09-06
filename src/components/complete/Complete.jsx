@@ -3,7 +3,7 @@ import complete from '../../assets/img/complete.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { activeSeatSelect, activeTableSelect, clear } from '../../store/reducers/dataSlice';
-import { memo, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const Complete = () => {
   const dispatch = useDispatch();
@@ -11,22 +11,21 @@ export const Complete = () => {
   const table = useSelector(activeTableSelect);
   const seat = useSelector(activeSeatSelect);
 
-  const handleClick = memo(() => {
+  const handleClick = () => {
     navigate('/tables');
-    dispatch(clear())
-  })
+    dispatch(clear());
+  };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      handleClick()
+      navigate('/tables');
+      dispatch(clear());
     }, 5000);
-    
+
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [handleClick]);
-  
-
+  }, [navigate, dispatch]);
 
   return (
     <CompleteStl>
