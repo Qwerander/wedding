@@ -1,9 +1,19 @@
+import { Outlet, useNavigate } from 'react-router-dom';
+import { ProgressBar } from './components/progressBar/ProgressBar';
+import { Layout } from './components/layout/Layout';
+import { useEffect } from 'react';
 
 export function App() {
-  return (
-    <div className="App">
+  const navigate = useNavigate();
 
-    </div>
+  useEffect(() => {
+    navigate('tables');
+  }, [navigate]);
+
+  return (
+    <Layout>
+      <ProgressBar />
+      <Outlet />
+    </Layout>
   );
 }
-
